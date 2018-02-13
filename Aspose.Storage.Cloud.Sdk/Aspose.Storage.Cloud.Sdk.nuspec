@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Aspose.Storage-Cloud</id>
+    <version>1.0.11</version>
+    <title>Aspose.Storage Cloud SDK for .NET</title>
+    <authors>Ciocan Madalina</authors>
+    <owners>Aspose</owners>
+    <licenseUrl>https://github.com/aspose-storage-cloud/aspose-storage-cloud-dotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/aspose-storage-cloud/aspose-storage-cloud-dotnet</projectUrl>
+    <iconUrl>https://www.aspose.cloud/templates/aspose/App_Themes/V3/images/storage/272x272/aspose_storage.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>New generation of Aspose Storage Cloud SDK that provides managers for multiple storage types in Aspose Cloud from .NET applications</description>
+    <releaseNotes>
+      Aspose.Storage Cloud SDK for .NET 1.0.11 Release Notes
+      This is fully reworked version of .NET Cloud SDK. Notable advantages over previous generation include the following:
+      * Classes, methods and properties have comments and are IDE-friendly
+      * Better security
+      * Usage of Request/Response classes to represent long lists of parameters. This allows for cleaner code and easier backwards-compatibility going forward.
+    </releaseNotes>
+    <copyright>Aspose 2002-2018. All Rights Reserved.</copyright>
+    <tags>Storage</tags>
+	  <dependencies>
+		  <dependency id="Newtonsoft.Json" version="(9.0.1,)" />
+	  </dependencies>
+  </metadata>
+</package>

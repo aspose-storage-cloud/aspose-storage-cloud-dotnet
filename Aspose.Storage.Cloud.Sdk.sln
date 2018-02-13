@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspose.Storage.Cloud.Sdk", "Aspose.Storage.Cloud.Sdk\Aspose.Storage.Cloud.Sdk.csproj", "{384DB2FD-EA30-48C9-8218-689E841622D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspose.Storage.Cloud.Sdk.Test", "Aspose.Storage.Cloud.Sdk.Test\Aspose.Storage.Cloud.Sdk.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3C4C45BF-AD44-4D40-ADFE-60D80C4C9D68}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{384DB2FD-EA30-48C9-8218-689E841622D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384DB2FD-EA30-48C9-8218-689E841622D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384DB2FD-EA30-48C9-8218-689E841622D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384DB2FD-EA30-48C9-8218-689E841622D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E19B91FA-CC15-4809-BF1B-7363E1D2B1F2}
+	EndGlobalSection
+EndGlobal
