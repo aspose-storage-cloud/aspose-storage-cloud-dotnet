@@ -32,7 +32,7 @@ namespace Aspose.Storage.Cloud.Sdk
     /// </summary>
     public class Configuration
     {
-        private string apiBaseUrl = "https://api-qa.aspose.cloud";
+        private string apiBaseUrl = "https://api.aspose.cloud";
         private string version = "v1.1";
 
         private bool debugMode = false;
