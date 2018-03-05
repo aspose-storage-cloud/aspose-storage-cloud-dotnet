@@ -104,6 +104,6 @@ freeline_project_description.json
 hs_err_pid*
 
 .DS_Store
-*.xcuserstate*StyleCop.Cache
-*StyleCop.Cache
-SDKs/NET/.vs/*
+
+# Custom
+.vs/*
