@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aspose.Storage.Cloud.Dotnet.Sdk.Test
+namespace Aspose.Storage.Cloud.Sdk.Tests
 {
     using System.Diagnostics;
     using System.IO;

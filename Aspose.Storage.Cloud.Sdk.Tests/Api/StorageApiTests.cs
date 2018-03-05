@@ -26,12 +26,12 @@
 using Aspose.Storage.Cloud.Sdk.Api;
 using Aspose.Storage.Cloud.Sdk.Model;
 using Aspose.Storage.Cloud.Sdk.Model.Requests;
-using Aspose.Storage.Cloud.Sdk.Test.Base;
+using Aspose.Storage.Cloud.Sdk.Tests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 
-namespace Aspose.Storage.Cloud.Sdk.Test
+namespace Aspose.Storage.Cloud.Sdk.Tests
 {
     /// <summary>
     ///  Class for testing StorageApi

@@ -23,7 +23,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Aspose.Storage.Cloud.Sdk.Test.Base
+namespace Aspose.Storage.Cloud.Sdk.Tests.Base
 {
     using System.IO;
 

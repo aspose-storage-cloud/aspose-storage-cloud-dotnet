@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Aspose.Storage-Cloud</id>
-    <version>1.0.11</version>
+    <version>2.0.0</version>
     <title>Aspose.Storage Cloud SDK for .NET</title>
     <authors>Ciocan Madalina</authors>
     <owners>Aspose</owners>
@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>New generation of Aspose Storage Cloud SDK that provides managers for multiple storage types in Aspose Cloud from .NET applications</description>
     <releaseNotes>
-      Aspose.Storage Cloud SDK for .NET 1.0.11 Release Notes
+      Aspose.Storage Cloud SDK for .NET 2.0.0 Release Notes
       This is fully reworked version of .NET Cloud SDK. Notable advantages over previous generation include the following:
       * Classes, methods and properties have comments and are IDE-friendly
       * Better security

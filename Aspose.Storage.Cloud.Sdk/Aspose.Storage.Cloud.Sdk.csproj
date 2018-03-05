@@ -14,8 +14,8 @@ OpenAPI spec version: 1.0
     <ProjectGuid>{384DB2FD-EA30-48C9-8218-689E841622D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aspose.Storage.Cloud.Dotnet.Sdk</RootNamespace>
-    <AssemblyName>Aspose.Storage.Cloud.Dotnet.Sdk</AssemblyName>
+    <RootNamespace>Aspose.Storage.Cloud.Sdk</RootNamespace>
+    <AssemblyName>Aspose.Storage.Cloud.Sdk</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
