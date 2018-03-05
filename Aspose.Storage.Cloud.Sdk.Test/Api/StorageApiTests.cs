@@ -45,6 +45,7 @@ namespace Aspose.Storage.Cloud.Sdk.Test
     {
         private readonly string dataFolder = BaseTestDataPath;
         private readonly string storageName = "StorageName";
+        private readonly string destStorageName = "DestStorageName";
 
         /// <summary>
         /// Test StorageGetDiscUsage
@@ -98,6 +99,156 @@ namespace Aspose.Storage.Cloud.Sdk.Test
             var response = StorageApi.GetListFileVersions(request);
             Assert.AreEqual(200, response.Code);
             Assert.IsNotNull(response.FileVersions);
+        }
+
+        /// <summary>
+        /// Test FileDeleteFile
+        /// </summary>
+        [TestMethod]
+        public void FileDeleteFileTest()
+        {
+            DeleteFileRequest request = new DeleteFileRequest();
+            request.path = Path.Combine(dataFolder, "TestFile.pdf");
+            request.storage = storageName;
+            request.versionId = null;
+            var response = StorageApi.DeleteFile(request);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        /// <summary>
+        /// Test FileGetDownload
+        /// </summary>
+        [TestMethod]
+        public void FileGetDownloadTest()
+        {
+            GetDownloadRequest request = new GetDownloadRequest();
+            request.path = Path.Combine(dataFolder, "TestFile.pdf");
+            request.storage = storageName;
+            request.versionId = null;
+            var response = StorageApi.GetDownload(request);
+            Assert.IsNotNull(response);
+        }
+
+        /// <summary>
+        /// Test FilePostMoveFile
+        /// </summary>
+        [TestMethod]
+        public void FilePostMoveFileTest()
+        {
+            PostMoveFileRequest request = new PostMoveFileRequest();
+            request.src = Path.Combine(dataFolder, "TestFile1.pdf");
+            request.storage = storageName;
+            request.dest = Path.Combine(dataFolder, "TestFile2.pdf");
+            request.destStorage = destStorageName;
+            request.versionId = null;
+            var response = StorageApi.PostMoveFile(request);
+            Assert.AreEqual(200, response.Code);
+
+        }
+
+        /// <summary>
+        /// Test FilePutCreate
+        /// </summary>
+        [TestMethod]
+        public void FilePutCreateTest()
+        {
+            string path = Path.Combine(dataFolder, "folder2/TestFile1.pdf");
+            PutCreateRequest request = new PutCreateRequest();
+            request.path = Path.Combine(dataFolder, "folder4/TestFile1.pdf");
+            request.File = StorageApi.GetDownload(new GetDownloadRequest(path, null, storageName));
+            request.storage = destStorageName;
+            request.versionId = null;
+            var response = StorageApi.PutCreate(request);
+            Assert.AreEqual(200, response.Code);
+
+        }
+
+        /// <summary>
+        /// Test FilePutCopy
+        /// </summary>
+        [TestMethod]
+        public void FilePutCopyTest()
+        {
+            PutCopyRequest request = new PutCopyRequest();
+            request.path = Path.Combine(dataFolder, "/folder2/TestFile1.pdf");
+            request.storage = storageName;
+            request.versionId = null;
+            request.newdest = Path.Combine(dataFolder, "folder3/TestFile1.pdf");
+            request.destStorage = destStorageName;
+            var response = StorageApi.PutCopy(request);
+            Assert.AreEqual(200, response.Code);
+
+        }
+
+        /// <summary>
+        /// Test FolderDeleteFolder
+        /// </summary>
+        [TestMethod]
+        public void FolderDeleteFolderTest()
+        {
+            DeleteFolderRequest request = new DeleteFolderRequest();
+            request.path = Path.Combine(dataFolder, "folder1");
+            request.recursive = true;
+            request.storage = storageName;
+            var response = StorageApi.DeleteFolder(request);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        /// <summary>
+        /// Test FolderGetListFiles
+        /// </summary>
+        [TestMethod]
+        public void FolderGetListFilesTest()
+        {
+            GetListFilesRequest request = new GetListFilesRequest();
+            request.path = Path.Combine(dataFolder, "folder2");
+            request.storage = storageName;
+            var response = StorageApi.GetListFiles(request);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        /// <summary>
+        /// Test FolderPostMoveFolder
+        /// </summary>
+        [TestMethod]
+        public void FolderPostMoveFolderTest()
+        {
+            PostMoveFolderRequest request = new PostMoveFolderRequest();
+            request.src = Path.Combine(dataFolder, "folder1");
+            request.storage = storageName;
+            request.dest = Path.Combine(dataFolder, "folder2");
+            request.destStorage = destStorageName;
+            var response = StorageApi.PostMoveFolder(request);
+            Assert.AreEqual(200, response.Code.Value);
+        }
+
+        /// <summary>
+        /// Test FolderPutCreateFolder
+        /// </summary>
+        [TestMethod]
+        public void FolderPutCreateFolderTest()
+        {
+            PutCreateFolderRequest request = new PutCreateFolderRequest();
+            request.path = Path.Combine(dataFolder, "folder1");
+            request.storage = storageName;
+            request.destStorage = destStorageName;
+            var response = StorageApi.PutCreateFolder(request);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        /// <summary>
+        /// Test FolderPutCopyFolder
+        /// </summary>
+        [TestMethod]
+        public void FolderPutCopyFolderTest()
+        {
+            PutCopyFolderRequest request = new PutCopyFolderRequest();
+            request.path = Path.Combine(dataFolder, "folder1");
+            request.storage = storageName;
+            request.newdest = "folder4/folder3/folder1";
+            request.destStorage = destStorageName;
+            var response = StorageApi.PutCopyFolder(request);
+            Assert.AreEqual(200, response.Code);
         }
 
     }

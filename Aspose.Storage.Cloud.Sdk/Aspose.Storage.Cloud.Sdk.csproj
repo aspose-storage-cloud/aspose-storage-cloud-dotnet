@@ -57,8 +57,6 @@ OpenAPI spec version: 1.0
     <Compile Include="Internal\RequestHandlers\ApiErrorResponse.cs" />
     <Compile Include="Internal\RequestHandlers\ApiExceptionRequestHandler.cs" />
     <Compile Include="Internal\ApiInvoker.cs" />
-    <Compile Include="Api\FileApi.cs" />
-    <Compile Include="Api\FolderApi.cs" />
     <Compile Include="Api\StorageApi.cs" />
     <Compile Include="Internal\RequestHandlers\AuthWithSignatureRequestHandler.cs" />
     <Compile Include="Internal\RequestHandlers\DebugLogRequestHandler.cs" />

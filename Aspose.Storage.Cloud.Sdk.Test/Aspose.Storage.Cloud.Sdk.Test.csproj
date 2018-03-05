@@ -61,8 +61,6 @@ OpenAPI spec version: 1.0
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\FileApiTests.cs" />
-    <Compile Include="Api\FolderApiTests.cs" />
     <Compile Include="Api\StorageApiTests.cs" />
     <Compile Include="Base\BaseTestContext.cs" />
     <Compile Include="OAuthTests.cs" />

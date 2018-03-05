@@ -254,5 +254,524 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                 throw;                
             }
         }
+
+        /// <summary>
+        /// Remove a specific file  
+        /// </summary>
+        /// <param name="request">Request. <see cref="DeleteFileRequest" /></param> 
+        /// <returns><see cref="RemoveFileResponse"/></returns>            
+        public RemoveFileResponse DeleteFile(DeleteFileRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling DeleteFile");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/file";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "DELETE",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (RemoveFileResponse)SerializationHelper.Deserialize(response, typeof(RemoveFileResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Download a specific file  
+        /// </summary>
+        /// <param name="request">Request. <see cref="GetDownloadRequest" /></param> 
+        /// <returns><see cref="System.IO.Stream"/></returns>            
+        public System.IO.Stream GetDownload(GetDownloadRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling GetDownload");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/file";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+
+            try
+            {
+                return this.apiInvoker.InvokeBinaryApi(
+                    resourcePath,
+                    "GET",
+                    null,
+                    null,
+                    null);
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Move a specific file  
+        /// </summary>
+        /// <param name="request">Request. <see cref="PostMoveFileRequest" /></param> 
+        /// <returns><see cref="MoveFileResponse"/></returns>            
+        public MoveFileResponse PostMoveFile(PostMoveFileRequest request)
+        {
+            // verify the required parameter 'src' is set
+            if (request.src == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'src' when calling PostMoveFile");
+            }
+
+            // verify the required parameter 'dest' is set
+            if (request.dest == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'dest' when calling PostMoveFile");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/file";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "src", request.src);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "dest", request.dest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "POST",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (MoveFileResponse)SerializationHelper.Deserialize(response, typeof(MoveFileResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Upload a specific file  
+        /// </summary>
+        /// <param name="request">Request. <see cref="PutCreateRequest" /></param> 
+        /// <returns><see cref="UploadResponse"/></returns>            
+        public UploadResponse PutCreate(PutCreateRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling PutCreate");
+            }
+
+            // verify the required parameter 'file' is set
+            if (request.File == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'file' when calling PutCreate");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/file";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            var formParams = new Dictionary<string, object>();
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+
+            if (request.File != null)
+            {
+                formParams.Add("file", this.apiInvoker.ToFileInfo(request.File, "File"));
+            }
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "PUT",
+                    null,
+                    null,
+                    formParams);
+                if (response != null)
+                {
+                    return (UploadResponse)SerializationHelper.Deserialize(response, typeof(UploadResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Copy a specific file  
+        /// </summary>
+        /// <param name="request">Request. <see cref="PutCopyRequest" /></param> 
+        /// <returns><see cref="CopyFileResponse"/></returns>            
+        public CopyFileResponse PutCopy(PutCopyRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling PutCopy");
+            }
+
+            // verify the required parameter 'newdest' is set
+            if (request.newdest == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'newdest' when calling PutCopy");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/file";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "newdest", request.newdest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "PUT",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (CopyFileResponse)SerializationHelper.Deserialize(response, typeof(CopyFileResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Remove a specific folder  
+        /// </summary>
+        /// <param name="request">Request. <see cref="DeleteFolderRequest" /></param> 
+        /// <returns><see cref="RemoveFolderResponse"/></returns>            
+        public RemoveFolderResponse DeleteFolder(DeleteFolderRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling DeleteFolder");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/folder";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "recursive", request.recursive);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "DELETE",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (RemoveFolderResponse)SerializationHelper.Deserialize(response, typeof(RemoveFolderResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get the file listing of a specific folder  
+        /// </summary>
+        /// <param name="request">Request. <see cref="GetListFilesRequest" /></param> 
+        /// <returns><see cref="FilesResponse"/></returns>            
+        public FilesResponse GetListFiles(GetListFilesRequest request)
+        {
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/folder";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "GET",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (FilesResponse)SerializationHelper.Deserialize(response, typeof(FilesResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Move a specific folder  
+        /// </summary>
+        /// <param name="request">Request. <see cref="PostMoveFolderRequest" /></param> 
+        /// <returns><see cref="MoveFolderResponse"/></returns>            
+        public MoveFolderResponse PostMoveFolder(PostMoveFolderRequest request)
+        {
+            // verify the required parameter 'src' is set
+            if (request.src == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'src' when calling PostMoveFolder");
+            }
+
+            // verify the required parameter 'dest' is set
+            if (request.dest == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'dest' when calling PostMoveFolder");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/folder";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "src", request.src);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "dest", request.dest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "POST",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (MoveFolderResponse)SerializationHelper.Deserialize(response, typeof(MoveFolderResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Create the folder  
+        /// </summary>
+        /// <param name="request">Request. <see cref="PutCreateFolderRequest" /></param> 
+        /// <returns><see cref="CreateFolderResponse"/></returns>            
+        public CreateFolderResponse PutCreateFolder(PutCreateFolderRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling PutCreateFolder");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/folder";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "PUT",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (CreateFolderResponse)SerializationHelper.Deserialize(response, typeof(CreateFolderResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Copy a folder  
+        /// </summary>
+        /// <param name="request">Request. <see cref="PutCopyFolderRequest" /></param> 
+        /// <returns><see cref="CreateFolderResponse"/></returns>            
+        public CreateFolderResponse PutCopyFolder(PutCopyFolderRequest request)
+        {
+            // verify the required parameter 'path' is set
+            if (request.path == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'path' when calling PutCopyFolder");
+            }
+
+            // verify the required parameter 'newdest' is set
+            if (request.newdest == null)
+            {
+                throw new ApiException(400, "Missing required parameter 'newdest' when calling PutCopyFolder");
+            }
+
+            // create path and map variables
+            var resourcePath = this.configuration.GetApiRootUrl() + "/storage/folder";
+            resourcePath = Regex
+                        .Replace(resourcePath, "\\*", string.Empty)
+                        .Replace("&amp;", "&")
+                        .Replace("/?", "?");
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "newdest", request.newdest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+
+            try
+            {
+                var response = this.apiInvoker.InvokeApi(
+                    resourcePath,
+                    "PUT",
+                    null,
+                    null,
+                    null);
+                if (response != null)
+                {
+                    return (CreateFolderResponse)SerializationHelper.Deserialize(response, typeof(CreateFolderResponse));
+                }
+
+                return null;
+            }
+            catch (ApiException ex)
+            {
+                if (ex.ErrorCode == 404)
+                {
+                    return null;
+                }
+
+                throw;
+            }
+        }
     }
 }

@@ -46,8 +46,6 @@ namespace Aspose.Storage.Cloud.Sdk.Test.Base
         protected BaseTestContext()
         {
             var configuration = new Configuration { AuthType = AuthType.OAuth2, ApiBaseUrl = _apiBaseUrl, AppSid = _appSid, AppKey = _appKey };
-            this.FileApi = new FileApi(configuration);
-            this.FolderApi = new FolderApi(configuration);
             this.StorageApi = new StorageApi(configuration);
         }
 
@@ -83,14 +81,6 @@ namespace Aspose.Storage.Cloud.Sdk.Test.Base
                 return "Common/";
             }
         }
-        /// <summary>
-        /// File API
-        /// </summary>
-        protected FileApi FileApi { get; set; }
-        /// <summary>
-        /// Folder API
-        /// </summary>
-        protected FolderApi FolderApi { get; set; }
         /// <summary>
         /// Storage API
         /// </summary>

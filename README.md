@@ -34,11 +34,11 @@ From within Visual Studio:
 The examples below show how your application have to initiate and download a file using Aspose.Storage-Cloud library:
 ```csharp
 var configuration = new Configuration { AppSid = appSid, AppKey = appKey };
-FileApi file = new FileApi(configuration);
+StorageApi file = new StorageApi(configuration);
 FileGetDownloadRequest request = new FileGetDownloadRequest();
 request.path = "TestFile.pdf";
 request.storage = "StorageName";
-var response = FileApi.FileGetDownload(request);
+var response = StorageApi.FileGetDownload(request);
 
 ```
 
