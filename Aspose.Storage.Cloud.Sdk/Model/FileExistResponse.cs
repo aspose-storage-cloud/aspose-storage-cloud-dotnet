@@ -36,7 +36,7 @@ namespace Aspose.Storage.Cloud.Sdk.Model
   /// <summary>
   /// 
   /// </summary>  
-  public class FileExistResponse : ResponseMessage 
+  public class FileExistResponse : AsposeResponse 
   {                       
         /// <summary>
         /// Gets or sets FileExist

@@ -36,7 +36,7 @@ namespace Aspose.Storage.Cloud.Sdk.Model
   /// <summary>
   /// 
   /// </summary>  
-  public class FileVersionsResponse : ResponseMessage 
+  public class FileVersionsResponse : AsposeResponse 
   {                       
         /// <summary>
         /// Gets or sets FileVersions

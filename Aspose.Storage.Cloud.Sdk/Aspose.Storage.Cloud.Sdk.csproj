@@ -92,7 +92,7 @@ OpenAPI spec version: 1.0
     <Compile Include="Model\Requests\GetIsExistRequest.cs" />
     <Compile Include="Model\Requests\GetIsStorageExistRequest.cs" />
     <Compile Include="Model\Requests\GetListFileVersionsRequest.cs" />
-    <Compile Include="Model\ResponseMessage.cs" />
+    <Compile Include="Model\AsposeResponse.cs" />
     <Compile Include="Model\StorageExistResponse.cs" />
     <Compile Include="Internal\NeedRepeatRequestException.cs" />
     <Compile Include="Internal\RequestHandlers\OAuthRequestHandler.cs" />

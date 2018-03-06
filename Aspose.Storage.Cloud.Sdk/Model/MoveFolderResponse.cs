@@ -36,7 +36,7 @@ namespace Aspose.Storage.Cloud.Sdk.Model
   /// <summary>
   /// 
   /// </summary>  
-  public class MoveFolderResponse : ResponseMessage 
+  public class MoveFolderResponse : AsposeResponse 
   {                       
         /// <summary>
         /// Get the string presentation of the object
