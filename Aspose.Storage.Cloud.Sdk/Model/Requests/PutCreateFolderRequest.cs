@@ -47,24 +47,24 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="destStorage">User&#39;s destination storage name</param>
         public PutCreateFolderRequest(string path, string storage = null, string destStorage = null)             
         {
-            this.path = path;
-            this.storage = storage;
-            this.destStorage = destStorage;
+            this.Path = path;
+            this.Storage = storage;
+            this.DestStorage = destStorage;
         }
 
         /// <summary>
         /// Target folder's path e.g. Folder1/Folder2/. The folders will be created recursively
         /// </summary>  
-        public string path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// User's source storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
 
         /// <summary>
         /// User's destination storage name
         /// </summary>  
-        public string destStorage { get; set; }
+        public string DestStorage { get; set; }
   }
 }

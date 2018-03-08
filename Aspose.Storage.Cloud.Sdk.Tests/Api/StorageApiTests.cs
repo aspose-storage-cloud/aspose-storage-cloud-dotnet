@@ -54,7 +54,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void StorageGetDiscUsageTest()
         {
             GetDiscUsageRequest request = new GetDiscUsageRequest();
-            request.storage = storageName;
+            request.Storage = storageName;
             var response = StorageApi.GetDiscUsage(request);
             Assert.AreEqual(200, response.Code);
         }
@@ -66,9 +66,9 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void StorageGetIsExistTest()
         {
             GetIsExistRequest request = new GetIsExistRequest();
-            request.path = Path.Combine(dataFolder, "folder1");
-            request.storage = storageName;
-            request.versionId = null;
+            request.Path = Path.Combine(dataFolder, "folder1");
+            request.Storage = storageName;
+            request.VersionId = null;
             var response = StorageApi.GetIsExist(request);
             Assert.AreEqual(200, response.Code);
             Assert.IsTrue(Convert.ToBoolean(response.FileExist.IsExist));
@@ -81,7 +81,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void StorageGetIsStorageExistTest()
         {
             GetIsStorageExistRequest request = new GetIsStorageExistRequest();
-            request.name = storageName;
+            request.Name = storageName;
             var response = StorageApi.GetIsStorageExist(request);
             Assert.AreEqual(200, response.Code);
             Assert.IsTrue(Convert.ToBoolean(response.IsExist));
@@ -94,8 +94,8 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void StorageGetListFileVersionsTest()
         {
             GetListFileVersionsRequest request = new GetListFileVersionsRequest();
-            request.path = "folder2/TestFile1.pdf";
-            request.storage = storageName;
+            request.Path = "folder2/TestFile1.pdf";
+            request.Storage = storageName;
             var response = StorageApi.GetListFileVersions(request);
             Assert.AreEqual(200, response.Code);
             Assert.IsNotNull(response.FileVersions);
@@ -108,9 +108,9 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FileDeleteFileTest()
         {
             DeleteFileRequest request = new DeleteFileRequest();
-            request.path = Path.Combine(dataFolder, "TestFile.pdf");
-            request.storage = storageName;
-            request.versionId = null;
+            request.Path = Path.Combine(dataFolder, "TestFile.pdf");
+            request.Storage = storageName;
+            request.VersionId = null;
             var response = StorageApi.DeleteFile(request);
             Assert.AreEqual(200, response.Code);
         }
@@ -122,9 +122,9 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FileGetDownloadTest()
         {
             GetDownloadRequest request = new GetDownloadRequest();
-            request.path = Path.Combine(dataFolder, "TestFile.pdf");
-            request.storage = storageName;
-            request.versionId = null;
+            request.Path = Path.Combine(dataFolder, "TestFile.pdf");
+            request.Storage = storageName;
+            request.VersionId = null;
             var response = StorageApi.GetDownload(request);
             Assert.IsNotNull(response);
         }
@@ -136,11 +136,11 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FilePostMoveFileTest()
         {
             PostMoveFileRequest request = new PostMoveFileRequest();
-            request.src = Path.Combine(dataFolder, "TestFile1.pdf");
-            request.storage = storageName;
-            request.dest = Path.Combine(dataFolder, "TestFile2.pdf");
-            request.destStorage = destStorageName;
-            request.versionId = null;
+            request.Src = Path.Combine(dataFolder, "TestFile1.pdf");
+            request.Storage = storageName;
+            request.Dest = Path.Combine(dataFolder, "TestFile2.pdf");
+            request.DestStorage = destStorageName;
+            request.VersionId = null;
             var response = StorageApi.PostMoveFile(request);
             Assert.AreEqual(200, response.Code);
 
@@ -154,10 +154,10 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         {
             string path = Path.Combine(dataFolder, "folder2/TestFile1.pdf");
             PutCreateRequest request = new PutCreateRequest();
-            request.path = Path.Combine(dataFolder, "folder4/TestFile1.pdf");
+            request.Path = Path.Combine(dataFolder, "folder4/TestFile1.pdf");
             request.File = StorageApi.GetDownload(new GetDownloadRequest(path, null, storageName));
-            request.storage = destStorageName;
-            request.versionId = null;
+            request.Storage = destStorageName;
+            request.VersionId = null;
             var response = StorageApi.PutCreate(request);
             Assert.AreEqual(200, response.Code);
 
@@ -170,11 +170,11 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FilePutCopyTest()
         {
             PutCopyRequest request = new PutCopyRequest();
-            request.path = Path.Combine(dataFolder, "/folder2/TestFile1.pdf");
-            request.storage = storageName;
-            request.versionId = null;
-            request.newdest = Path.Combine(dataFolder, "folder3/TestFile1.pdf");
-            request.destStorage = destStorageName;
+            request.Path = Path.Combine(dataFolder, "/folder2/TestFile1.pdf");
+            request.Storage = storageName;
+            request.VersionId = null;
+            request.Newdest = Path.Combine(dataFolder, "folder3/TestFile1.pdf");
+            request.DestStorage = destStorageName;
             var response = StorageApi.PutCopy(request);
             Assert.AreEqual(200, response.Code);
 
@@ -187,9 +187,9 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderDeleteFolderTest()
         {
             DeleteFolderRequest request = new DeleteFolderRequest();
-            request.path = Path.Combine(dataFolder, "folder1");
-            request.recursive = true;
-            request.storage = storageName;
+            request.Path = Path.Combine(dataFolder, "folder1");
+            request.Recursive = true;
+            request.Storage = storageName;
             var response = StorageApi.DeleteFolder(request);
             Assert.AreEqual(200, response.Code);
         }
@@ -201,8 +201,8 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderGetListFilesTest()
         {
             GetListFilesRequest request = new GetListFilesRequest();
-            request.path = Path.Combine(dataFolder, "folder2");
-            request.storage = storageName;
+            request.Path = Path.Combine(dataFolder, "folder2");
+            request.Storage = storageName;
             var response = StorageApi.GetListFiles(request);
             Assert.AreEqual(200, response.Code);
         }
@@ -214,10 +214,10 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderPostMoveFolderTest()
         {
             PostMoveFolderRequest request = new PostMoveFolderRequest();
-            request.src = Path.Combine(dataFolder, "folder1");
-            request.storage = storageName;
-            request.dest = Path.Combine(dataFolder, "folder2");
-            request.destStorage = destStorageName;
+            request.Src = Path.Combine(dataFolder, "folder1");
+            request.Storage = storageName;
+            request.Dest = Path.Combine(dataFolder, "folder2");
+            request.DestStorage = destStorageName;
             var response = StorageApi.PostMoveFolder(request);
             Assert.AreEqual(200, response.Code.Value);
         }
@@ -229,9 +229,9 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderPutCreateFolderTest()
         {
             PutCreateFolderRequest request = new PutCreateFolderRequest();
-            request.path = Path.Combine(dataFolder, "folder1");
-            request.storage = storageName;
-            request.destStorage = destStorageName;
+            request.Path = Path.Combine(dataFolder, "folder1");
+            request.Storage = storageName;
+            request.DestStorage = destStorageName;
             var response = StorageApi.PutCreateFolder(request);
             Assert.AreEqual(200, response.Code);
         }
@@ -243,10 +243,10 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderPutCopyFolderTest()
         {
             PutCopyFolderRequest request = new PutCopyFolderRequest();
-            request.path = Path.Combine(dataFolder, "folder1");
-            request.storage = storageName;
-            request.newdest = "folder4/folder3/folder1";
-            request.destStorage = destStorageName;
+            request.Path = Path.Combine(dataFolder, "folder1");
+            request.Storage = storageName;
+            request.Newdest = "folder4/folder3/folder1";
+            request.DestStorage = destStorageName;
             var response = StorageApi.PutCopyFolder(request);
             Assert.AreEqual(200, response.Code);
         }

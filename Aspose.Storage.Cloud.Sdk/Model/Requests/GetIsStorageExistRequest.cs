@@ -45,12 +45,12 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="name">Storage name</param>
         public GetIsStorageExistRequest(string name)             
         {
-            this.name = name;
+            this.Name = name;
         }
 
         /// <summary>
         /// Storage name
         /// </summary>  
-        public string name { get; set; }
+        public string Name { get; set; }
   }
 }

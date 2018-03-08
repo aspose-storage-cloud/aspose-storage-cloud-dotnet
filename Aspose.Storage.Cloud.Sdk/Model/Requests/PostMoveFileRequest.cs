@@ -49,36 +49,36 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="destStorage">User&#39;s destination storage name</param>
         public PostMoveFileRequest(string src, string dest, string versionId = null, string storage = null, string destStorage = null)             
         {
-            this.src = src;
-            this.dest = dest;
-            this.versionId = versionId;
-            this.storage = storage;
-            this.destStorage = destStorage;
+            this.Src = src;
+            this.Dest = dest;
+            this.VersionId = versionId;
+            this.Storage = storage;
+            this.DestStorage = destStorage;
         }
 
         /// <summary>
         /// Source file path e.g. /fileSource.ext
         /// </summary>  
-        public string src { get; set; }
+        public string Src { get; set; }
 
         /// <summary>
         /// Destination file path e.g. /fileDestination.ext
         /// </summary>  
-        public string dest { get; set; }
+        public string Dest { get; set; }
 
         /// <summary>
         /// Source file's version,
         /// </summary>  
-        public string versionId { get; set; }
+        public string VersionId { get; set; }
 
         /// <summary>
         /// User's source storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
 
         /// <summary>
         /// User's destination storage name
         /// </summary>  
-        public string destStorage { get; set; }
+        public string DestStorage { get; set; }
   }
 }

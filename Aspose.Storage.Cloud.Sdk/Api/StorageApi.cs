@@ -83,7 +83,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
             
             try 
             {                               
@@ -119,7 +119,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public FileExistResponse GetIsExist(GetIsExistRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null) 
+            if (request.Path == null) 
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling GetIsExist");
             }
@@ -130,9 +130,9 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
             
             try 
             {                               
@@ -168,7 +168,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public StorageExistResponse GetIsStorageExist(GetIsStorageExistRequest request)
         {
             // verify the required parameter 'name' is set
-            if (request.name == null) 
+            if (request.Name == null) 
             {
                 throw new ApiException(400, "Missing required parameter 'name' when calling GetIsStorageExist");
             }
@@ -179,7 +179,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddPathParameter(resourcePath, "name", request.name);
+            resourcePath = UrlHelper.AddPathParameter(resourcePath, "name", request.Name);
             
             try 
             {                               
@@ -215,7 +215,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public FileVersionsResponse GetListFileVersions(GetListFileVersionsRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null) 
+            if (request.Path == null) 
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling GetListFileVersions");
             }
@@ -226,8 +226,8 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
             
             try 
             {                               
@@ -263,7 +263,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public RemoveFileResponse DeleteFile(DeleteFileRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling DeleteFile");
             }
@@ -274,9 +274,9 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
 
             try
             {
@@ -312,7 +312,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public System.IO.Stream GetDownload(GetDownloadRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling GetDownload");
             }
@@ -323,9 +323,9 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
 
             try
             {
@@ -355,13 +355,13 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public MoveFileResponse PostMoveFile(PostMoveFileRequest request)
         {
             // verify the required parameter 'src' is set
-            if (request.src == null)
+            if (request.Src == null)
             {
                 throw new ApiException(400, "Missing required parameter 'src' when calling PostMoveFile");
             }
 
             // verify the required parameter 'dest' is set
-            if (request.dest == null)
+            if (request.Dest == null)
             {
                 throw new ApiException(400, "Missing required parameter 'dest' when calling PostMoveFile");
             }
@@ -372,11 +372,11 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "src", request.src);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "dest", request.dest);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "src", request.Src);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "dest", request.Dest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.DestStorage);
 
             try
             {
@@ -412,7 +412,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public UploadResponse PutCreate(PutCreateRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling PutCreate");
             }
@@ -430,9 +430,9 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
             var formParams = new Dictionary<string, object>();
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
 
             if (request.File != null)
             {
@@ -473,13 +473,13 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public CopyFileResponse PutCopy(PutCopyRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling PutCopy");
             }
 
             // verify the required parameter 'newdest' is set
-            if (request.newdest == null)
+            if (request.Newdest == null)
             {
                 throw new ApiException(400, "Missing required parameter 'newdest' when calling PutCopy");
             }
@@ -490,11 +490,11 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "newdest", request.newdest);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.versionId);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "newdest", request.Newdest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.DestStorage);
 
             try
             {
@@ -530,7 +530,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public RemoveFolderResponse DeleteFolder(DeleteFolderRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling DeleteFolder");
             }
@@ -541,9 +541,9 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "recursive", request.recursive);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "recursive", request.Recursive);
 
             try
             {
@@ -584,8 +584,8 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
 
             try
             {
@@ -621,13 +621,13 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public MoveFolderResponse PostMoveFolder(PostMoveFolderRequest request)
         {
             // verify the required parameter 'src' is set
-            if (request.src == null)
+            if (request.Src == null)
             {
                 throw new ApiException(400, "Missing required parameter 'src' when calling PostMoveFolder");
             }
 
             // verify the required parameter 'dest' is set
-            if (request.dest == null)
+            if (request.Dest == null)
             {
                 throw new ApiException(400, "Missing required parameter 'dest' when calling PostMoveFolder");
             }
@@ -638,10 +638,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "src", request.src);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "dest", request.dest);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "src", request.Src);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "dest", request.Dest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.DestStorage);
 
             try
             {
@@ -677,7 +677,7 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public CreateFolderResponse PutCreateFolder(PutCreateFolderRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling PutCreateFolder");
             }
@@ -688,9 +688,9 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.DestStorage);
 
             try
             {
@@ -726,13 +726,13 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         public CreateFolderResponse PutCopyFolder(PutCopyFolderRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.path == null)
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling PutCopyFolder");
             }
 
             // verify the required parameter 'newdest' is set
-            if (request.newdest == null)
+            if (request.Newdest == null)
             {
                 throw new ApiException(400, "Missing required parameter 'newdest' when calling PutCopyFolder");
             }
@@ -743,10 +743,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace(resourcePath, "\\*", string.Empty)
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.path);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "newdest", request.newdest);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.storage);
-            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.destStorage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "newdest", request.Newdest);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
+            resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "destStorage", request.DestStorage);
 
             try
             {

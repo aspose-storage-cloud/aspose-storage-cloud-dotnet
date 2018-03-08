@@ -48,30 +48,30 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="destStorage">User&#39;s destination storage name</param>
         public PostMoveFolderRequest(string src, string dest, string storage = null, string destStorage = null)             
         {
-            this.src = src;
-            this.dest = dest;
-            this.storage = storage;
-            this.destStorage = destStorage;
+            this.Src = src;
+            this.Dest = dest;
+            this.Storage = storage;
+            this.DestStorage = destStorage;
         }
 
         /// <summary>
         /// Source folder path e.g. /Folder1
         /// </summary>  
-        public string src { get; set; }
+        public string Src { get; set; }
 
         /// <summary>
         /// Destination folder path e.g. /Folder2
         /// </summary>  
-        public string dest { get; set; }
+        public string Dest { get; set; }
 
         /// <summary>
         /// User's source storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
 
         /// <summary>
         /// User's destination storage name
         /// </summary>  
-        public string destStorage { get; set; }
+        public string DestStorage { get; set; }
   }
 }

@@ -45,12 +45,12 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="storage">User&#39;s storage name</param>
         public GetDiscUsageRequest(string storage = null)             
         {
-            this.storage = storage;
+            this.Storage = storage;
         }
 
         /// <summary>
         /// User's storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
   }
 }

@@ -49,36 +49,36 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="destStorage">User&#39;s destination storage name</param>
         public PutCopyRequest(string path, string newdest, string versionId = null, string storage = null, string destStorage = null)             
         {
-            this.path = path;
-            this.newdest = newdest;
-            this.versionId = versionId;
-            this.storage = storage;
-            this.destStorage = destStorage;
+            this.Path = path;
+            this.Newdest = newdest;
+            this.VersionId = versionId;
+            this.Storage = storage;
+            this.DestStorage = destStorage;
         }
 
         /// <summary>
         /// Source file's path. Sample: '/Folder 1/file.ext' or '/Bucket/Folder 1/file.ext'
         /// </summary>  
-        public string path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// Destination file path
         /// </summary>  
-        public string newdest { get; set; }
+        public string Newdest { get; set; }
 
         /// <summary>
         /// Source file's version
         /// </summary>  
-        public string versionId { get; set; }
+        public string VersionId { get; set; }
 
         /// <summary>
         /// User's source storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
 
         /// <summary>
         /// User's destination storage name
         /// </summary>  
-        public string destStorage { get; set; }
+        public string DestStorage { get; set; }
   }
 }

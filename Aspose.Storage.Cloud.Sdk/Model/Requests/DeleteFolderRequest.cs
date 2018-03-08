@@ -47,24 +47,24 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="recursive">Remove recursivelly inner folder/files. If false and folder contains data than exception is raised.</param>
         public DeleteFolderRequest(string path, string storage = null, bool? recursive = null)             
         {
-            this.path = path;
-            this.storage = storage;
-            this.recursive = recursive;
+            this.Path = path;
+            this.Storage = storage;
+            this.Recursive = recursive;
         }
 
         /// <summary>
         /// Folder path e.g. /Folder1
         /// </summary>  
-        public string path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// User's storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
 
         /// <summary>
         /// Remove recursivelly inner folder/files. If false and folder contains data than exception is raised.
         /// </summary>  
-        public bool? recursive { get; set; }
+        public bool? Recursive { get; set; }
   }
 }

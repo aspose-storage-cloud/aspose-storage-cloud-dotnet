@@ -46,18 +46,18 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="storage">User&#39;s storage name</param>
         public GetListFilesRequest(string path = null, string storage = null)             
         {
-            this.path = path;
-            this.storage = storage;
+            this.Path = path;
+            this.Storage = storage;
         }
 
         /// <summary>
         /// Start with name of storage e.g. root folder '/'or some folder '/folder1/..'
         /// </summary>  
-        public string path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// User's storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
   }
 }

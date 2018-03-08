@@ -48,16 +48,16 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="storage">User&#39;s storage name</param>
         public PutCreateRequest(string path, System.IO.Stream file, string versionId = null, string storage = null)             
         {
-            this.path = path;
+            this.Path = path;
             this.File = file;
-            this.versionId = versionId;
-            this.storage = storage;
+            this.VersionId = versionId;
+            this.Storage = storage;
         }
 
         /// <summary>
         /// Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext
         /// </summary>  
-        public string path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// File to upload
@@ -67,11 +67,11 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <summary>
         /// Source file's version
         /// </summary>  
-        public string versionId { get; set; }
+        public string VersionId { get; set; }
 
         /// <summary>
         /// User's storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
   }
 }

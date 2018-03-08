@@ -51,8 +51,8 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
             using (var stream = this.ToStream("content"))
             {
                 var request = new GetDownloadRequest();
-                request.path = Path.Combine(dataFolder, "TestFile.pdf");
-                request.storage = storageName;
+                request.Path = Path.Combine(dataFolder, "TestFile.pdf");
+                request.Storage = storageName;
                 api.GetDownload(request);
 
                 Thread.Sleep(2000);

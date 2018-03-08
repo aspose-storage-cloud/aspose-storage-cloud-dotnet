@@ -47,24 +47,24 @@ namespace Aspose.Storage.Cloud.Sdk.Model.Requests
         /// <param name="storage">User&#39;s storage name</param>
         public GetDownloadRequest(string path, string versionId = null, string storage = null)             
         {
-            this.path = path;
-            this.versionId = versionId;
-            this.storage = storage;
+            this.Path = path;
+            this.VersionId = versionId;
+            this.Storage = storage;
         }
 
         /// <summary>
         /// Path of the file including the file name and extension e.g. /file.ext
         /// </summary>  
-        public string path { get; set; }
+        public string Path { get; set; }
 
         /// <summary>
         /// File's version
         /// </summary>  
-        public string versionId { get; set; }
+        public string VersionId { get; set; }
 
         /// <summary>
         /// User's storage name
         /// </summary>  
-        public string storage { get; set; }
+        public string Storage { get; set; }
   }
 }
