@@ -2,25 +2,21 @@
 <package >
   <metadata>
     <id>Aspose.Storage-Cloud</id>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <title>Aspose.Storage Cloud SDK for .NET</title>
-    <authors>Ciocan Madalina</authors>
-    <owners>Aspose</owners>
+    <authors>Aspose</authors>
+    <owners>asposecloud</owners>
     <licenseUrl>https://github.com/aspose-storage-cloud/aspose-storage-cloud-dotnet/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/aspose-storage-cloud/aspose-storage-cloud-dotnet</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/aspose-storage-cloud/aspose-storage-cloud-codegen/master/images/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>New generation of Aspose Storage Cloud SDK that provides managers for multiple storage types in Aspose Cloud from .NET applications</description>
+    <description>New generation of Aspose Storage Cloud SDK that provides managers for multiple storage types in Aspose Cloud from .NET applications.</description>
     <releaseNotes>
-      Aspose.Storage Cloud SDK for .NET 2.0.0 Release Notes
-      This is fully reworked version of .NET Cloud SDK. Notable advantages over previous generation include the following:
-      * Classes, methods and properties have comments and are IDE-friendly.
-      * Added OAuth2 authentication which is the official authentication method we support. Removed the old authentication system.
-      * Usage of Request/Response classes to represent long lists of parameters. This allows for cleaner code and easier backwards-compatibility going forward.
-      * SaaSposeResponse root element was renamed to AsposeResponse.
+      Aspose.Storage Cloud SDK for .NET 2.1.0 Release Notes
+      * The properties from the request models have been updated to start with upper case character.
     </releaseNotes>
-    <copyright>Aspose 2002-2018. All Rights Reserved.</copyright>
-    <tags>Storage</tags>
+    <copyright>© Aspose Pty Ltd 2001-2018. All Rights Reserved.</copyright>
+    <tags>Aspose Storage, Aspose Files, Aspose Folders, Aspose 3rd Party Storages</tags>
 	  <dependencies>
 		  <dependency id="Newtonsoft.Json" version="(9.0.1,)" />
 	  </dependencies>
