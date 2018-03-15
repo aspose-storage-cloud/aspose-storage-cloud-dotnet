@@ -42,7 +42,7 @@ var response = StorageApi.FileGetDownload(request);
 
 ```
 
-[Tests](Aspose.Storage.Cloud.Sdk.Test) contain various examples of using the SDK.
+[Tests](/aspose-storage-cloud/aspose-storage-cloud-dotnet/tree/master/Aspose.Storage.Cloud.Sdk.Tests) contain various examples of using the SDK.
 
 ## Dependencies
 - .NET Framework 2.0 or later
