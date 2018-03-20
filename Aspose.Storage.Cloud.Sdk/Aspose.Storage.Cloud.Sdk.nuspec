@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Aspose.Storage-Cloud</id>
-    <version>2.1.0</version>
+    <version>18.3.0</version>
     <title>Aspose.Storage Cloud SDK for .NET</title>
     <authors>Aspose</authors>
     <owners>asposecloud</owners>
@@ -12,8 +12,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>New generation of Aspose Storage Cloud SDK that provides managers for multiple storage types in Aspose Cloud from .NET applications.</description>
     <releaseNotes>
-      Aspose.Storage Cloud SDK for .NET 2.1.0 Release Notes
-      * The properties from the request models have been updated to start with upper case character.
+      Aspose.Storage Cloud SDK for .NET 18.3.0 Release Notes
+	  * The properties from the request models have been updated to start with upper case character.
+      * We switched to the YY.MM version.
     </releaseNotes>
     <copyright>© Aspose Pty Ltd 2001-2018. All Rights Reserved.</copyright>
     <tags>Aspose Storage, Aspose Files, Aspose Folders, Aspose 3rd Party Storages</tags>
