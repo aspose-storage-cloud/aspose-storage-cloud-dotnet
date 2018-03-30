@@ -36,10 +36,23 @@ namespace Aspose.Storage.Cloud.Sdk.Tests.Base
     /// </summary>
     public abstract class BaseTestContext
     {
+        // For some reason ConfigurationManager doesn't work on .Net Core
+#if NETCOREAPP2_0
+
+        //Get App key and App SID from https://cloud.aspose.com
+        private readonly string _appSid = "";
+        private readonly string _appKey = "";
+        private readonly string _apiBaseUrl = "http://api-qa.aspose.cloud";
+
+#else
+
         // It is "test" credentials for "dev" server. Please, don't use them in your application.
         private readonly string _appSid = System.Configuration.ConfigurationManager.AppSettings["AppSID"];
         private readonly string _appKey = System.Configuration.ConfigurationManager.AppSettings["AppKey"];
         private readonly string _apiBaseUrl = System.Configuration.ConfigurationManager.AppSettings["ApiBaseUrl"];
+
+#endif
+
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseTestContext"/> class.
         /// </summary>
