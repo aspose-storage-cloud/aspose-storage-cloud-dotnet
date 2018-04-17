@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Aspose.Storage.Cloud.Sdk</AssemblyName>
+    <RootNamespace>Aspose.Storage.Cloud.Sdk</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyKeyFile>false</GenerateAssemblyKeyFile>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\build-out\bin\debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\build-out\bin\release\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
+
+<ItemGroup>
+    <Compile Include="Api\ApiException.cs" />
+    <Compile Include="Api\AuthType.cs" />
+    <Compile Include="Api\Configuration.cs" />
+    <Compile Include="Internal\RequestHandlers\ApiErrorResponse.cs" />
+    <Compile Include="Internal\RequestHandlers\ApiExceptionRequestHandler.cs" />
+    <Compile Include="Internal\ApiInvoker.cs" />
+    <Compile Include="Api\StorageApi.cs" />
+    <Compile Include="Internal\RequestHandlers\AuthWithSignatureRequestHandler.cs" />
+    <Compile Include="Internal\RequestHandlers\DebugLogRequestHandler.cs" />
+    <Compile Include="Internal\RequestHandlers\Error.cs" />
+    <Compile Include="Internal\FileInfo.cs" />
+    <Compile Include="Internal\IRequestHandler.cs" />
+    <Compile Include="Internal\RequestHandlers\LegacyApiErrorResponse.cs" />
+    <Compile Include="Model\CopyFileResponse.cs" />
+    <Compile Include="Model\CreateFolderResponse.cs" />
+    <Compile Include="Model\DiscUsage.cs" />
+    <Compile Include="Model\DiscUsageResponse.cs" />
+    <Compile Include="Model\FileExist.cs" />
+    <Compile Include="Model\FileExistResponse.cs" />
+    <Compile Include="Model\FileResponse.cs" />
+    <Compile Include="Model\FilesResponse.cs" />
+    <Compile Include="Model\FileVersion.cs" />
+    <Compile Include="Model\FileVersionsResponse.cs" />
+    <Compile Include="Model\MoveFileResponse.cs" />
+    <Compile Include="Model\MoveFolderResponse.cs" />
+    <Compile Include="Model\RemoveFileResponse.cs" />
+    <Compile Include="Model\RemoveFolderResponse.cs" />
+    <Compile Include="Model\Requests\DeleteFileRequest.cs" />
+    <Compile Include="Model\Requests\GetDownloadRequest.cs" />
+    <Compile Include="Model\Requests\PostMoveFileRequest.cs" />
+    <Compile Include="Model\Requests\PutCopyRequest.cs" />
+    <Compile Include="Model\Requests\PutCreateRequest.cs" />
+    <Compile Include="Model\Requests\DeleteFolderRequest.cs" />
+    <Compile Include="Model\Requests\GetListFilesRequest.cs" />
+    <Compile Include="Model\Requests\PostMoveFolderRequest.cs" />
+    <Compile Include="Model\Requests\PutCopyFolderRequest.cs" />
+    <Compile Include="Model\Requests\PutCreateFolderRequest.cs" />
+    <Compile Include="Model\Requests\GetDiscUsageRequest.cs" />
+    <Compile Include="Model\Requests\GetIsExistRequest.cs" />
+    <Compile Include="Model\Requests\GetIsStorageExistRequest.cs" />
+    <Compile Include="Model\Requests\GetListFileVersionsRequest.cs" />
+    <Compile Include="Model\AsposeResponse.cs" />
+    <Compile Include="Model\StorageExistResponse.cs" />
+    <Compile Include="Internal\NeedRepeatRequestException.cs" />
+    <Compile Include="Internal\RequestHandlers\OAuthRequestHandler.cs" />
+    <Compile Include="Model\UploadResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Internal\SerializationHelper.cs" />
+    <Compile Include="Internal\StreamHelper.cs" />
+    <Compile Include="Internal\UrlHelper.cs" />
+  </ItemGroup>
+
+</Project>

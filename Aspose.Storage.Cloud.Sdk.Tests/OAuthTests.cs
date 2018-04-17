@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Aspose.Storage.Cloud.Sdk.Tests
 {
+    // NMock has no implementation for .Net Core 
+#if !NETCOREAPP2_0
+
     using System.Diagnostics;
     using System.IO;
     using System.Threading;
@@ -84,4 +87,6 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
             return stream;
         }
     }
+
+#endif
 }
