@@ -34,6 +34,7 @@ namespace Aspose.Storage.Cloud.Sdk
     {
         private string apiBaseUrl = "https://api.aspose.cloud";
         private string version = "v1.1";
+        private int default_timeout_ms = 300000;
 
         private bool debugMode = false;
 
@@ -62,6 +63,22 @@ namespace Aspose.Storage.Cloud.Sdk
         /// Gets or sets the app sid.
         /// </summary>
         public string AppSid { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating the timeout in ms.
+        /// </summary>
+        public int Timeout
+        {
+            get
+            {
+                return default_timeout_ms;
+            }
+
+            set
+            {
+                default_timeout_ms = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether debug mode.
