@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Project DefaultTargets="Tests" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Configuration>Release</Configuration>
+		<ApiVersion>v1.1</ApiVersion>
+		<SolutionDir>.\..\..\aspose-storage-cloud-dotnet</SolutionDir>
+		<TestsDir>.\..\Aspose.Storage.Cloud.Sdk.Tests</TestsDir>
+		<PublishDir>.\..\publish\tests</PublishDir>
+		<TestResultsDir>$(PublishDir)\TestResults</TestResultsDir>
+		<VisualStudioVersion>15.0</VisualStudioVersion>
+		<TestsCategory></TestsCategory>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<OutDir Include="$(PublishDir)" />
+		<TestsProject Include="$(TestsDir)\Aspose.Storage.Cloud.Sdk.Tests.csproj" />
+		<TestsAssemblies Include="$(PublishDir)\Aspose.Storage.Cloud.Sdk.Tests.dll" />
+		<TestsResults Include="$(TestResultsDir)\Aspose.Storage.Cloud.Sdk.Tests.trx"/>
+	 </ItemGroup>
+
+	<Target Name="Clean" Condition="Exists(@(OutDir))">
+		<RemoveDir Directories="$(OutDir)" />
+		<RemoveDir Directories="$(TestResultsDir)"/>
+	</Target>
+
+	<Target Name="Init" DependsOnTargets="Clean">
+		<MakeDir Directories="$(TestResultsDir)" />
+		<MakeDir Directories="$(OutDir)" />
+	</Target>
+
+	<Target Name="Tests" DependsOnTargets="Init">
+		<MSBuild Projects="@(TestsProject)" 
+						 Targets="Rebuild" 
+						 Properties="OutDir=%(OutDir.FullPath);
+									 Configuration=$(Configuration);
+									 VisualStudioVersion=$(VisualStudioVersion)" />
+
+		<Exec IgnoreExitCode="true" Command='mstest /testcontainer:@(TestsAssemblies) /category:"$(TestsCategory)" /resultsfile:@(TestsResults)' />
+	</Target>
+</Project>

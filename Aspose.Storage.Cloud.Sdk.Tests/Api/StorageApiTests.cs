@@ -29,7 +29,9 @@ using Aspose.Storage.Cloud.Sdk.Model.Requests;
 using Aspose.Storage.Cloud.Sdk.Tests.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Aspose.Storage.Cloud.Sdk.Tests
 {
@@ -43,19 +45,28 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
     [TestClass]
     public class StorageApiTests : BaseTestContext
     {
-        private readonly string dataFolder = BaseTestDataPath;
-        private readonly string storageName = "StorageName";
-        private readonly string destStorageName = "DestStorageName";
+        #region Test Storage
 
         /// <summary>
         /// Test StorageGetDiscUsage
         /// </summary>
         [TestMethod]
+        [TestCategory("Storage")]
         public void StorageGetDiscUsageTest()
         {
-            GetDiscUsageRequest request = new GetDiscUsageRequest();
-            request.Storage = storageName;
-            var response = StorageApi.GetDiscUsage(request);
+            var request = new GetDiscUsageRequest();
+            request.Storage = StorageName;
+            DiscUsageResponse response = null;
+            try
+            {
+                response = StorageApi.GetDiscUsage(request);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("not implemented"), ex.Message);
+                return;
+            }
+
             Assert.AreEqual(200, response.Code);
         }
 
@@ -63,194 +74,616 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         /// Test StorageGetIsExist
         /// </summary>
         [TestMethod]
+        [TestCategory("Storage")]
         public void StorageGetIsExistTest()
         {
-            GetIsExistRequest request = new GetIsExistRequest();
-            request.Path = Path.Combine(dataFolder, "folder1");
-            request.Storage = storageName;
-            request.VersionId = null;
-            var response = StorageApi.GetIsExist(request);
-            Assert.AreEqual(200, response.Code);
-            Assert.IsTrue(Convert.ToBoolean(response.FileExist.IsExist));
+            var path = Path.Combine(TempFolderPath, "TestFolder1");
+            var fileExist = FileExist(StorageName, path);
+            Assert.IsTrue((bool)fileExist.IsExist);
+        }
+
+        /// <summary>
+        /// Test StorageGetIsExistWithVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Storage")]
+        public void StorageGetIsExistWithVersionTest()
+        {
+            var path = Path.Combine(TempFolderPath, "FileVersion.data");
+
+            //Get file versions
+            var versions = GetFileVersions(StorageName, path);
+            if (versions == null) return;
+
+            var versionId = versions[0].VersionId;
+
+            //Check if file exists
+            var fileExist = FileExist(StorageName, path, versionId);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsFalse((bool)fileExist.IsFolder);
         }
 
         /// <summary>
         /// Test StorageGetIsStorageExist
         /// </summary>
         [TestMethod]
+        [TestCategory("Storage")]
         public void StorageGetIsStorageExistTest()
         {
-            GetIsStorageExistRequest request = new GetIsStorageExistRequest();
-            request.Name = storageName;
+            var request = new GetIsStorageExistRequest();
+            request.Name = StorageName;
             var response = StorageApi.GetIsStorageExist(request);
             Assert.AreEqual(200, response.Code);
-            Assert.IsTrue(Convert.ToBoolean(response.IsExist));
+            Assert.IsTrue((bool)response.IsExist);
         }
 
         /// <summary>
         /// Test StorageGetListFileVersions
         /// </summary>
         [TestMethod]
+        [TestCategory("Storage")]
         public void StorageGetListFileVersionsTest()
         {
-            GetListFileVersionsRequest request = new GetListFileVersionsRequest();
-            request.Path = "folder2/TestFile1.pdf";
-            request.Storage = storageName;
-            var response = StorageApi.GetListFileVersions(request);
-            Assert.AreEqual(200, response.Code);
-            Assert.IsNotNull(response.FileVersions);
+            var path = Path.Combine(TempFolderPath, "FileVersion.data");
+            var versions = GetFileVersions(StorageName, path);
+            if (versions == null) return;
+            Assert.IsTrue(versions.Count > 0, "Number of file version has to be more then zero");
         }
+
+        #endregion
+
+        #region Test Files
 
         /// <summary>
         /// Test FileDeleteFile
         /// </summary>
         [TestMethod]
+        [TestCategory("Files")]
         public void FileDeleteFileTest()
         {
-            DeleteFileRequest request = new DeleteFileRequest();
-            request.Path = Path.Combine(dataFolder, "TestFile.pdf");
-            request.Storage = storageName;
-            request.VersionId = null;
-            var response = StorageApi.DeleteFile(request);
-            Assert.AreEqual(200, response.Code);
+            var path = Path.Combine(TempFolderPath, "TestFolder1/TestFile1.data");
+
+            //Delete file
+            DeleteFile(StorageName, path);
+
+            //The file should not exists on path
+            var fileExist = FileExist(StorageName, path);
+            Assert.IsFalse((bool)fileExist.IsExist);
+        }
+
+        /// <summary>
+        /// Test FileDeleteFileWithVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Files")]
+        public void FileDeleteFileWithVersionTest()
+        {
+            var path = Path.Combine(TempFolderPath, "FileVersion.data");
+
+            //Get file versions
+            var versions = GetFileVersions(StorageName, path);
+            if (versions == null) return;
+
+            var versionId = versions[0].VersionId;
+
+            //Delete file with version
+            DeleteFile(StorageName, path, versionId);
+
+            //The file should not exists on path with version
+            var fileExist = FileExist(StorageName, path, versionId);
+            Assert.IsFalse((bool)fileExist.IsExist);
         }
 
         /// <summary>
         /// Test FileGetDownload
         /// </summary>
         [TestMethod]
+        [TestCategory("Files")]
         public void FileGetDownloadTest()
         {
-            GetDownloadRequest request = new GetDownloadRequest();
-            request.Path = Path.Combine(dataFolder, "TestFile.pdf");
-            request.Storage = storageName;
-            request.VersionId = null;
-            var response = StorageApi.GetDownload(request);
-            Assert.IsNotNull(response);
+            var path = Path.Combine(TempFolderPath, "TestFolder1/TestFile1.data");
+
+            //Get the file
+            var file = DownloadFile(StorageName, path);
+
+            //Check the file content
+            Assert.IsTrue(file.Length == 6, "File size is not correct");
+            for (var i = 0; i < file.Length; i++)
+                Assert.IsTrue(file.ReadByte() == i + 1, "File content is not valid");
+        }
+
+        /// <summary>
+        /// Test FileGetDownloadWithVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Files")]
+        public void FileGetDownloadWithVersionTest()
+        {
+            var path = Path.Combine(TempFolderPath, "FileVersion.data");
+
+            //Get file versions
+            var versions = GetFileVersions(StorageName, path);
+            if (versions == null) return;
+
+            var versionId = versions[0].VersionId;
+
+            //Get the file
+            var file = DownloadFile(StorageName, path, versionId);
+
+            //Check the response
+            Assert.IsTrue(file.Length > 0, "File size is not correct");
+            for (var i = 0; i < file.Length; i++)
+            {
+                Assert.IsTrue(file.ReadByte() == i + 1, "File content is not valid");
+            }
+        }
+
+        /// <summary>
+        /// Test FileGetDownloadWithIncorectVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Files")]
+        public void FileGetDownloadWithIncorectVersionTest()
+        {
+            var path = Path.Combine(TempFolderPath, "FileVersion.data");
+            var versionId = "XXXXXXXXX";
+
+            //Downlod file with incorect version
+            var file = DownloadFile(StorageName, path, versionId);
         }
 
         /// <summary>
         /// Test FilePostMoveFile
         /// </summary>
         [TestMethod]
+        [TestCategory("Files")]
         public void FilePostMoveFileTest()
         {
-            PostMoveFileRequest request = new PostMoveFileRequest();
-            request.Src = Path.Combine(dataFolder, "TestFile1.pdf");
-            request.Storage = storageName;
-            request.Dest = Path.Combine(dataFolder, "TestFile2.pdf");
-            request.DestStorage = destStorageName;
-            request.VersionId = null;
-            var response = StorageApi.PostMoveFile(request);
-            Assert.AreEqual(200, response.Code);
+            var srcPath = Path.Combine(TempFolderPath, "TestFolder1/TestFile1.data");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFile1.data");
 
+            //Move the file
+            MoveFile(StorageName, srcPath, DestStorageName, destPath);
+
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsFalse((bool)fileExist.IsFolder);
+
+            //The file should not exists on src path
+            fileExist = FileExist(StorageName, srcPath);
+            Assert.IsFalse((bool)fileExist.IsExist);
+
+            //Delete the output
+            if (StorageName != DestStorageName)
+            {
+                DeleteFile(DestStorageName, destPath);
+            }
+        }
+
+        /// <summary>
+        /// Test FilePostMoveFileWithVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Files")]
+        public void FilePostMoveFileWithVersionTest()
+        {
+            var srcPath = Path.Combine(TempFolderPath, "FileVersion.data");
+            var destPath = Path.Combine(TempFolderPath, "FileVersionMove.data");
+
+            //Get file versions
+            var versions = GetFileVersions(StorageName, srcPath);
+            if (versions == null) return;
+
+            var versionId = versions[0].VersionId;
+
+            //Move the file
+            MoveFile(StorageName, srcPath, DestStorageName, destPath, versionId);
+
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsFalse((bool)fileExist.IsFolder);
+
+            //Check the file content
+            var file = DownloadFile(DestStorageName, destPath);
+
+            Assert.IsTrue(file.Length > 0, "File size is not correct");
+            for (var i = 0; i < file.Length; i++)
+            {
+                Assert.IsTrue(file.ReadByte() == i + 1, "File content is not valid");
+            }
+
+            //Delete the output
+            if (StorageName != DestStorageName)
+            {
+                DeleteFile(DestStorageName, destPath);
+            }
         }
 
         /// <summary>
         /// Test FilePutCreate
         /// </summary>
         [TestMethod]
+        [TestCategory("Files")]
         public void FilePutCreateTest()
         {
-            string path = Path.Combine(dataFolder, "folder2/TestFile1.pdf");
-            PutCreateRequest request = new PutCreateRequest();
-            request.Path = Path.Combine(dataFolder, "folder4/TestFile1.pdf");
-            request.File = StorageApi.GetDownload(new GetDownloadRequest(path, null, storageName));
-            request.Storage = destStorageName;
+            var srcPath = Path.Combine(TempFolderPath, "TestFolder1/TestFile1.data");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFile1.data");
+
+            //Get the file
+            var file = DownloadFile(StorageName, srcPath);
+
+            //PutCreate the file
+            var request = new PutCreateRequest();
+            request.Path = destPath;
+            request.File = file;
+            request.Storage = DestStorageName;
             request.VersionId = null;
             var response = StorageApi.PutCreate(request);
             Assert.AreEqual(200, response.Code);
 
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsFalse((bool)fileExist.IsFolder);
         }
 
         /// <summary>
         /// Test FilePutCopy
         /// </summary>
         [TestMethod]
+        [TestCategory("Files")]
         public void FilePutCopyTest()
         {
-            PutCopyRequest request = new PutCopyRequest();
-            request.Path = Path.Combine(dataFolder, "/folder2/TestFile1.pdf");
-            request.Storage = storageName;
-            request.VersionId = null;
-            request.Newdest = Path.Combine(dataFolder, "folder3/TestFile1.pdf");
-            request.DestStorage = destStorageName;
-            var response = StorageApi.PutCopy(request);
-            Assert.AreEqual(200, response.Code);
+            var srcPath = Path.Combine(TempFolderPath, "TestFolder1/TestFile1.data");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFile1.data");
 
+            //PutCopy file
+            PutCopyFile(StorageName, srcPath, DestStorageName, destPath);
+
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsFalse((bool)fileExist.IsFolder);
+
+            //Delete the output
+            if (StorageName != DestStorageName)
+            {
+                DeleteFile(DestStorageName, destPath);
+            }
         }
+
+        /// <summary>
+        /// Test FilePutCopyWithVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Files")]
+        public void FilePutCopyWithVersionTest()
+        {
+            var srcPath = Path.Combine(TempFolderPath, "FileVersion.data");
+            var destPath = Path.Combine(TempFolderPath, "FileVersionCopy.data");
+
+            //Get file versions
+            var versions = GetFileVersions(StorageName, srcPath);
+            if (versions == null) return;
+
+            var versionId = versions[0].VersionId;
+
+            //PutCopy file
+            PutCopyFile(StorageName, srcPath, DestStorageName, destPath, versionId);
+
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsFalse((bool)fileExist.IsFolder);
+
+            //Get the file
+            var file = DownloadFile(DestStorageName, destPath);
+
+            //Check the file content
+            Assert.IsTrue(file.Length > 0, "File size is not correct");
+            for (var i = 0; i < file.Length; i++)
+            {
+                Assert.IsTrue(file.ReadByte() == i + 1, "File content is not valid");
+            }
+
+            //Delete the output
+            if (StorageName != DestStorageName)
+            {
+                DeleteFile(DestStorageName, destPath);
+            }
+        }
+
+        /// <summary>
+        /// Test FilePutCopyWithIncorectVersion
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Files")]
+        public void FilePutCopyWithIncorectVersionTest()
+        {
+            var srcPath = Path.Combine(TempFolderPath, "FileVersion.data");
+            var destPath = Path.Combine(TempFolderPath, "FileVersionCopy.data");
+            var versionId = "XXXXXXXXX";
+            PutCopyFile(StorageName, srcPath, DestStorageName, destPath, versionId);
+        }
+
+        #endregion
+
+        #region Test Folders
 
         /// <summary>
         /// Test FolderDeleteFolder
         /// </summary>
         [TestMethod]
+        [TestCategory("Folders")]
         public void FolderDeleteFolderTest()
         {
-            DeleteFolderRequest request = new DeleteFolderRequest();
-            request.Path = Path.Combine(dataFolder, "folder1");
+            var path = Path.Combine(TempFolderPath, "TestFolder1");
+
+            //Delete folder
+            var request = new DeleteFolderRequest();
+            request.Path = path;
             request.Recursive = true;
-            request.Storage = storageName;
+            request.Storage = StorageName;
             var response = StorageApi.DeleteFolder(request);
             Assert.AreEqual(200, response.Code);
+
+            //The file should not exists on path
+            var fileExist = FileExist(StorageName, path);
+            Assert.IsFalse((bool)fileExist.IsExist);
         }
 
         /// <summary>
         /// Test FolderGetListFiles
         /// </summary>
         [TestMethod]
+        [TestCategory("Folders")]
         public void FolderGetListFilesTest()
         {
-            GetListFilesRequest request = new GetListFilesRequest();
-            request.Path = Path.Combine(dataFolder, "folder2");
-            request.Storage = storageName;
+            //Get list files
+            var request = new GetListFilesRequest();
+            request.Path = TempFolderPath;
+            request.Storage = StorageName;
             var response = StorageApi.GetListFiles(request);
             Assert.AreEqual(200, response.Code);
+
+            var files = response.Files;
+
+            //Check the files type
+            foreach (var file in files)
+            {
+                var isFolder = (bool)file.IsFolder;
+                var path = file.Path.Substring(1);
+
+                var fileExist = FileExist(StorageName, path);
+                Assert.AreEqual(isFolder, (bool)fileExist.IsFolder);
+                Assert.IsTrue((bool)fileExist.IsExist);
+            }
         }
 
         /// <summary>
         /// Test FolderPostMoveFolder
         /// </summary>
         [TestMethod]
+        [TestCategory("Folders")]
         public void FolderPostMoveFolderTest()
         {
-            PostMoveFolderRequest request = new PostMoveFolderRequest();
-            request.Src = Path.Combine(dataFolder, "folder1");
-            request.Storage = storageName;
-            request.Dest = Path.Combine(dataFolder, "folder2");
-            request.DestStorage = destStorageName;
+            var srcPath = Path.Combine(TempFolderPath, "TestFolder1");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFolder1/");
+
+            //Move folder
+            var request = new PostMoveFolderRequest();
+            request.Src = srcPath;
+            request.Storage = StorageName;
+            request.Dest = destPath;
+            request.DestStorage = DestStorageName;
             var response = StorageApi.PostMoveFolder(request);
             Assert.AreEqual(200, response.Code.Value);
+
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsTrue((bool)fileExist.IsFolder);
+
+            //The file should not exists on src path
+            fileExist = FileExist(StorageName, srcPath);
+            Assert.IsFalse((bool)fileExist.IsExist);
+
+            //Delete the output
+            if (StorageName != DestStorageName)
+            {
+                DeleteFile(DestStorageName, destPath);
+            }
         }
 
         /// <summary>
         /// Test FolderPutCreateFolder
         /// </summary>
         [TestMethod]
+        [TestCategory("Folders")]
         public void FolderPutCreateFolderTest()
         {
-            PutCreateFolderRequest request = new PutCreateFolderRequest();
-            request.Path = Path.Combine(dataFolder, "folder1");
-            request.Storage = storageName;
-            request.DestStorage = destStorageName;
-            var response = StorageApi.PutCreateFolder(request);
+            var path = Path.Combine(TempFolderPath, "TestFolder0");
+
+            //PutCreate folder
+            var request = new PutCreateFolderRequest();
+            request.Path = path;
+            request.Storage = StorageName;
+            request.DestStorage = StorageName;
+            CreateFolderResponse response = null;
+
+            try
+            {
+                response = StorageApi.PutCreateFolder(request);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("not supported"), ex.Message);
+                return;
+            }
+
             Assert.AreEqual(200, response.Code);
+
+            //The folder should exists on path
+            var fileExist = FileExist(StorageName, path);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsTrue((bool)fileExist.IsFolder);
         }
 
         /// <summary>
         /// Test FolderPutCopyFolder
         /// </summary>
         [TestMethod]
+        [TestCategory("Folders")]
         public void FolderPutCopyFolderTest()
         {
-            PutCopyFolderRequest request = new PutCopyFolderRequest();
-            request.Path = Path.Combine(dataFolder, "folder1");
-            request.Storage = storageName;
-            request.Newdest = "folder4/folder3/folder1";
-            request.DestStorage = destStorageName;
+            var srcPath = Path.Combine(TempFolderPath, "TestFolder1");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFolder1/");
+
+            //PutCopy folder
+            var request = new PutCopyFolderRequest();
+            request.Path = srcPath;
+            request.Storage = StorageName;
+            request.Newdest = destPath;
+            request.DestStorage = DestStorageName;
             var response = StorageApi.PutCopyFolder(request);
+            Assert.AreEqual(200, response.Code);
+
+            //The file should exists on dest path
+            var fileExist = FileExist(DestStorageName, destPath);
+            Assert.IsTrue((bool)fileExist.IsExist);
+            Assert.IsTrue((bool)fileExist.IsFolder);
+
+            //Delete the output
+            if (StorageName != DestStorageName)
+            {
+                DeleteFile(DestStorageName, destPath);
+            }
+        }
+
+        #endregion
+
+        #region _helpers_
+
+        private FileExist FileExist(string storageName, string path, string versionId = null)
+        {
+            var request = new GetIsExistRequest();
+            request.Path = path;
+            request.Storage = storageName;
+            request.VersionId = versionId;
+            var response = StorageApi.GetIsExist(request);
+            Assert.AreEqual(200, response.Code);
+
+            return response.FileExist;
+        }
+
+        private void DeleteFile(string storageName, string path, string versionId = null)
+        {
+            var request = new DeleteFileRequest();
+            request.Path = path;
+            request.Storage = storageName;
+            request.VersionId = versionId;
+            var response = StorageApi.DeleteFile(request);
             Assert.AreEqual(200, response.Code);
         }
 
-    }
+        private List<FileVersion> GetFileVersions(string storageName, string path)
+        {
+            var request = new GetListFileVersionsRequest();
+            request.Path = path;
+            request.Storage = storageName;
 
+            FileVersionsResponse response = null;
+
+            try
+            {
+                response = StorageApi.GetListFileVersions(request);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("not support file versioning"), ex.Message);
+                return null;
+            }
+
+            Assert.AreEqual(200, response.Code);
+            Assert.IsNotNull(response.FileVersions);
+
+            return response.FileVersions;
+        }
+
+        private Stream DownloadFile(string storageName, string path, string versionId = null)
+        {
+            var request = new GetDownloadRequest();
+            request.Path = path;
+            request.Storage = storageName;
+            request.VersionId = versionId;
+            Stream response = null;
+
+            try
+            {
+                response = StorageApi.GetDownload(request);
+            }
+            catch (Exception ex)
+            {
+                var msg = new string[]
+                {
+                    "Invalid version id specified",         //AmazonS3
+                    "Invalid snapshot time",                //Windows Azure
+                    "Value should match pattern",           //DropBox
+                };
+
+                Assert.IsTrue(msg.Where(x => ex.Message.Contains(x)).Any(), ex.Message);
+                return null;
+            }
+
+            Assert.IsNotNull(response);
+
+            return response;
+        }
+
+        private void MoveFile(string storageName, string srcPath, string destStorageName, string destPath, string versionId = null)
+        {
+            var request = new PostMoveFileRequest();
+            request.Src = srcPath;
+            request.Storage = storageName;
+            request.Dest = destPath;
+            request.DestStorage = destStorageName;
+            request.VersionId = versionId;
+            var response = StorageApi.PostMoveFile(request);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        private void PutCopyFile(string storageName, string srcPath, string destStorageName, string destPath, string versionId = null)
+        {
+            var request = new PutCopyRequest();
+            request.Path = srcPath;
+            request.Storage = storageName;
+            request.VersionId = versionId;
+            request.Newdest = destPath;
+            request.DestStorage = destStorageName;
+            CopyFileResponse response = null;
+
+            try
+            {
+                response = StorageApi.PutCopy(request);
+            }
+            catch (Exception ex)
+            {
+                var msg = new string[]
+                {
+                    "Invalid version id specified",         //AmazonS3
+                    "Invalid snapshot time",                //Windows Azure
+                    "Value should match pattern",           //DropBox
+                };
+
+                Assert.IsTrue(msg.Where(x => ex.Message.Contains(x)).Any(), ex.Message);
+                return;
+            }
+
+            Assert.AreEqual(200, response.Code);
+        }
+
+        #endregion
+    }
 }

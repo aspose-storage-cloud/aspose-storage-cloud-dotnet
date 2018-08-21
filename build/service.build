@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Project DefaultTargets="Publish" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">	
+	<PropertyGroup>
+		<Configuration>Release</Configuration>
+		<ApiVersion>v1.1</ApiVersion>
+		<SolutionDir>.\..\..\aspose-storage-cloud-dotnet</SolutionDir>
+		<SdkDir>.\..\Aspose.Storage.Cloud.Sdk</SdkDir>
+		<PublishDir>.\..\publish\service</PublishDir>
+		<AllowedReferenceRelatedFileExtensions>.pdb;.xml;.manifest</AllowedReferenceRelatedFileExtensions>
+		<LastUsedPlatform>Any CPU</LastUsedPlatform>
+		<VisualStudioVersion>15.0</VisualStudioVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<OutDir Include="$(PublishDir)" />
+		<Projects Include="$(SdkDir)\Aspose.Storage.Cloud.Sdk.csproj" />
+	 </ItemGroup>
+
+	<Target Name="Clean" Condition="Exists(@(OutDir))">
+		<RemoveDir Directories="$(OutDir)" />
+	</Target>
+
+	<Target Name="Init" DependsOnTargets="Clean">
+		<MakeDir Directories="$(OutDir)" />
+	</Target>
+
+	<Target Name="Publish" DependsOnTargets="Init">
+		<MSBuild Projects="@(Projects)" 
+				Targets="Rebuild" 
+				Properties="OutDir=%(OutDir.FullPath);
+							Configuration=$(Configuration);
+							AllowUntrustedCertificate=True;
+							VisualStudioVersion=$(VisualStudioVersion)" />
+	</Target>
+</Project>

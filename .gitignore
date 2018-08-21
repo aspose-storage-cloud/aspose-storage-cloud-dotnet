@@ -23,6 +23,7 @@ test-results/
 node_modules/
 *.userprefs
 packages/
+publish/
 *.gitattributes
 *.pyc
 # Built application files

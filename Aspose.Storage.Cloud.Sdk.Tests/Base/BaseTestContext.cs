@@ -25,80 +25,101 @@
 
 namespace Aspose.Storage.Cloud.Sdk.Tests.Base
 {
-    using System.IO;
-
-    using Newtonsoft.Json;
     using Aspose.Storage.Cloud.Sdk.Api;
-
+    using Aspose.Storage.Cloud.Sdk.Model.Requests;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.IO;
 
     /// <summary>
     /// Base class for all tests
     /// </summary>
+    [TestClass]
     public abstract class BaseTestContext
     {
-        // For some reason ConfigurationManager doesn't work on .Net Core
-#if NETCOREAPP2_0
-
-        //Get App key and App SID from https://cloud.aspose.com
-        private readonly string _appSid = "";
-        private readonly string _appKey = "";
-        private readonly string _apiBaseUrl = "http://api-qa.aspose.cloud";
-
-#else
-
-        // It is "test" credentials for "dev" server. Please, don't use them in your application.
-        private readonly string _appSid = System.Configuration.ConfigurationManager.AppSettings["AppSID"];
-        private readonly string _appKey = System.Configuration.ConfigurationManager.AppSettings["AppKey"];
-        private readonly string _apiBaseUrl = System.Configuration.ConfigurationManager.AppSettings["ApiBaseUrl"];
-
-#endif
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseTestContext"/> class.
         /// </summary>
         protected BaseTestContext()
         {
-            var configuration = new Configuration { AuthType = AuthType.OAuth2, ApiBaseUrl = _apiBaseUrl, AppSid = _appSid, AppKey = _appKey };
+            var configuration = new Configuration { AuthType = AuthType.OAuth2, ApiBaseUrl = ApiBaseUrl, AppSid = AppSid, AppKey = AppKey };
             this.StorageApi = new StorageApi(configuration);
         }
 
-        /// <summary>
-        /// Base path to test data        
-        /// </summary>
-        protected static string BaseTestDataPath
-        {
-            get
-            {
-                return "sdktests/dotnet";
-            }
-        }
+        #region Properties
 
-        /// <summary>
-        /// Base path to output data
-        /// </summary>
-        protected static string BaseTestOutPath
-        {
-            get
-            {
-                return "TestOut";
-            }
-        }
-
-        /// <summary>
-        /// Returns common folder with source test files
-        /// </summary>
-        protected static string CommonFolder
-        {
-            get
-            {
-                return "Common/";
-            }
-        }
         /// <summary>
         /// Storage API
         /// </summary>
         protected StorageApi StorageApi { get; set; }
-        
+
+        /// <summary>
+        /// Base path for .NET aspose-storage-cloud sdk tests
+        /// </summary>
+        protected static string BaseTestPath { get { return @"testsdata\aspose.storage\sdktests\dotnet"; } }
+
+        /// <summary>
+        /// Base path for Data sdk - to permanently keep the files used by unit tests
+        /// </summary>
+        protected static string BaseTestDataPath = Path.Combine(BaseTestPath, "Data").Replace("\\", "/");
+
+        /// <summary>
+        /// Base path for test the sdk
+        /// </summary>
+        protected static string BaseTestFolderPath { get { return @"sdktests\dotnet"; } }
+
+        /// <summary>
+        /// Temp folder name
+        /// </summary>
+        protected static string TempFolderName = Guid.NewGuid().ToString();
+
+        /// <summary>
+        /// Temp folder path
+        /// </summary>
+        protected static string TempFolderPath = Path.Combine(BaseTestFolderPath, TempFolderName).Replace("\\", "/");
+
+        /// <summary>
+        /// Source storage name
+        /// </summary>
+        protected static string StorageName
+        {
+            get
+            {
+                var _storageName = Environment.GetEnvironmentVariable("StorageName");
+                if (String.IsNullOrEmpty(_storageName))
+                {
+                    _storageName = "First Storage";
+                }
+                return _storageName;
+            }
+        }
+
+        /// <summary>
+        /// Destination storage name
+        /// </summary>
+        protected static string DestStorageName
+        {
+            get
+            {
+                var _destStorageName = Environment.GetEnvironmentVariable("DestStorageName");
+                if (String.IsNullOrEmpty(_destStorageName))
+                {
+                    _destStorageName = StorageName;
+                }
+                return _destStorageName;
+            }
+        }
+
+        /// <summary>
+        /// AppKey
+        /// </summary>
+        protected string AppKey
+        {
+            get
+            {
+                return Environment.GetEnvironmentVariable("AppKey");
+            }
+        }
 
         /// <summary>
         /// AppSid
@@ -107,36 +128,97 @@ namespace Aspose.Storage.Cloud.Sdk.Tests.Base
         {
             get
             {
-                return _appSid;
+                return Environment.GetEnvironmentVariable("AppSid");
             }
         }
 
         /// <summary>
-        /// AppSid
+        /// ApiBaseUrl
         /// </summary>
-        protected string AppKey
+        protected string ApiBaseUrl
         {
             get
             {
-                return _appKey;
+                return Environment.GetEnvironmentVariable("ApiBaseUrl");
+            }
+        }
+
+        #endregion
+
+        #region SetUp-Clean methods
+
+        /// <summary>
+        /// Initialization.
+        /// </summary>
+        [TestInitialize]
+        public void SetUp()
+        {
+            #region Add folders
+
+            try
+            {
+                for (var i = 1; i <= 2; i++)
+                {
+                    var request = new PutCreateFolderRequest();
+                    request.Path = string.Format("{0}/TestFolder{1}", TempFolderPath, i);
+                    request.Storage = StorageName;
+                    request.DestStorage = DestStorageName;
+
+                    var response = StorageApi.PutCreateFolder(request);
+                    Assert.AreEqual(200, response.Code);
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("not supported"), ex.Message);
+            }
+
+            #endregion
+
+            #region Add files
+            {
+                var request = new PutCreateRequest() { Storage = StorageName, VersionId = null };
+
+                for (var i = 1; i <= 2; i++)
+                {
+                    //Add TestFile.data
+                    request.File = new MemoryStream(new byte[] { 1, 2, 3, 4, 5, 6 });
+                    request.Path = string.Format("{0}/TestFolder{1}/TestFile{1}.data", TempFolderPath, i);
+                    var response = StorageApi.PutCreate(request);
+                    Assert.AreEqual(200, response.Code);
+                }
+
+                //Add FileVersion.data - first version
+                request.Path = string.Format("{0}/FileVersion.data", TempFolderPath);
+                request.File = new MemoryStream(new byte[] { 1, 2, 3, 4, 5, 6 });
+                var responseVersion = StorageApi.PutCreate(request);
+                Assert.AreEqual(200, responseVersion.Code);
+
+                //Add FileVersion.data - second version
+                request.File = new MemoryStream(new byte[] { 1, 2, 3, 4, 5, 6, 7 });
+                responseVersion = StorageApi.PutCreate(request);
+                Assert.AreEqual(200, responseVersion.Code);
+
+                #endregion
             }
         }
 
         /// <summary>
-        /// Returns test data path
+        /// Cleaning.
         /// </summary>
-        /// <param name="subfolder">subfolder for specific tests</param>
-        /// <returns>test data path</returns>
-        protected static string GetDataDir(string subfolder = null)
+        [TestCleanup]
+        public void Clean()
         {
-            return Path.Combine("TestData", string.IsNullOrEmpty(subfolder) ? string.Empty : subfolder);
+            var request = new DeleteFolderRequest()
+            {
+                Path = TempFolderPath,
+                Storage = StorageName,
+                Recursive = true
+            };
+            var response = StorageApi.DeleteFolder(request);
+            Assert.AreEqual(200, response.Code);
         }
-        
-        private class Keys
-        {
-            public string AppSid { get; set; }
 
-            public string AppKey { get; set; }
-        }
+        #endregion // End of  SetUp-Clean methods
     }
 }

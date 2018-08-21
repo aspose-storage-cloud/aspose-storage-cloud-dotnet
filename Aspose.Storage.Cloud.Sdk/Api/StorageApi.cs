@@ -29,16 +29,16 @@ namespace Aspose.Storage.Cloud.Sdk.Api
     using System.Text.RegularExpressions;
     using Aspose.Storage.Cloud.Sdk.Model;
     using Aspose.Storage.Cloud.Sdk.Model.Requests;
-	using Aspose.Storage.Cloud.Sdk.Internal;
+    using Aspose.Storage.Cloud.Sdk.Internal;
     using Aspose.Storage.Cloud.Sdk.Internal.RequestHandlers;
-    
+
     /// <summary>
     /// Aspose.Storage for Cloud API.
     /// </summary>
     public class StorageApi
-    {        
+    {
         private readonly ApiInvoker apiInvoker;
-        private readonly Configuration configuration;     
+        private readonly Configuration configuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StorageApi"/> class.
@@ -56,25 +56,25 @@ namespace Aspose.Storage.Cloud.Sdk.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StorageApi"/> class.
-        /// </summary>    
+        /// </summary>
         /// <param name="configuration">Configuration settings</param>
         public StorageApi(Configuration configuration)
         {
             this.configuration = configuration;
-            
+
             var requestHandlers = new List<IRequestHandler>();
             requestHandlers.Add(new OAuthRequestHandler(this.configuration));
             requestHandlers.Add(new DebugLogRequestHandler(this.configuration));
             requestHandlers.Add(new ApiExceptionRequestHandler());
             requestHandlers.Add(new AuthWithSignatureRequestHandler(this.configuration));
             this.apiInvoker = new ApiInvoker(requestHandlers);
-        }                            
+        }
 
         /// <summary>
-        /// Check the disk usage of the current account  
+        /// Check the disk usage of the current account
         /// </summary>
         /// <param name="request">Request. <see cref="GetDiscUsageRequest" /></param> 
-        /// <returns><see cref="DiscUsageResponse"/></returns>            
+        /// <returns><see cref="DiscUsageResponse"/></returns>
         public DiscUsageResponse GetDiscUsage(GetDiscUsageRequest request)
         {
             // create path and map variables
@@ -84,30 +84,30 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
             resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
-            
-            try 
-            {                               
+
+            try
+            {
                 var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "GET", 
-                    null, 
-                    null, 
+                    resourcePath,
+                    "GET",
+                    null,
+                    null,
                     null);
                 if (response != null)
                 {
-					return (DiscUsageResponse)SerializationHelper.Deserialize(response, typeof(DiscUsageResponse));
+                    return (DiscUsageResponse)SerializationHelper.Deserialize(response, typeof(DiscUsageResponse));
                 }
-                    
+
                 return null;
-            } 
-            catch (ApiException ex) 
+            }
+            catch (ApiException ex)
             {
-                if (ex.ErrorCode == 404) 
+                if (ex.ErrorCode == 404)
                 {
                     return null;
                 }
-                
-                throw;                
+
+                throw;
             }
         }
 
@@ -115,11 +115,11 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         /// Check if a specific file or folder exists 
         /// </summary>
         /// <param name="request">Request. <see cref="GetIsExistRequest" /></param> 
-        /// <returns><see cref="FileExistResponse"/></returns>            
+        /// <returns><see cref="FileExistResponse"/></returns>
         public FileExistResponse GetIsExist(GetIsExistRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.Path == null) 
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling GetIsExist");
             }
@@ -133,42 +133,42 @@ namespace Aspose.Storage.Cloud.Sdk.Api
             resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
             resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "versionId", request.VersionId);
             resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
-            
-            try 
-            {                               
+
+            try
+            {
                 var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "GET", 
-                    null, 
-                    null, 
+                    resourcePath,
+                    "GET",
+                    null,
+                    null,
                     null);
                 if (response != null)
                 {
-					return (FileExistResponse)SerializationHelper.Deserialize(response, typeof(FileExistResponse));
+                    return (FileExistResponse)SerializationHelper.Deserialize(response, typeof(FileExistResponse));
                 }
-                    
+
                 return null;
-            } 
-            catch (ApiException ex) 
+            }
+            catch (ApiException ex)
             {
-                if (ex.ErrorCode == 404) 
+                if (ex.ErrorCode == 404)
                 {
                     return null;
                 }
-                
-                throw;                
+
+                throw;
             }
         }
 
         /// <summary>
-        /// Check if storage exists  
+        /// Check if storage exists
         /// </summary>
         /// <param name="request">Request. <see cref="GetIsStorageExistRequest" /></param> 
-        /// <returns><see cref="StorageExistResponse"/></returns>            
+        /// <returns><see cref="StorageExistResponse"/></returns>
         public StorageExistResponse GetIsStorageExist(GetIsStorageExistRequest request)
         {
             // verify the required parameter 'name' is set
-            if (request.Name == null) 
+            if (request.Name == null)
             {
                 throw new ApiException(400, "Missing required parameter 'name' when calling GetIsStorageExist");
             }
@@ -180,42 +180,42 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace("&amp;", "&")
                         .Replace("/?", "?");
             resourcePath = UrlHelper.AddPathParameter(resourcePath, "name", request.Name);
-            
-            try 
-            {                               
+
+            try
+            {
                 var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "GET", 
-                    null, 
-                    null, 
+                    resourcePath,
+                    "GET",
+                    null,
+                    null,
                     null);
                 if (response != null)
                 {
-					return (StorageExistResponse)SerializationHelper.Deserialize(response, typeof(StorageExistResponse));
+                    return (StorageExistResponse)SerializationHelper.Deserialize(response, typeof(StorageExistResponse));
                 }
-                    
+
                 return null;
-            } 
-            catch (ApiException ex) 
+            }
+            catch (ApiException ex)
             {
-                if (ex.ErrorCode == 404) 
+                if (ex.ErrorCode == 404)
                 {
                     return null;
                 }
-                
-                throw;                
+
+                throw;
             }
         }
 
         /// <summary>
-        /// Get the file&#39;s versions list  
+        /// Get the file&#39;s versions list
         /// </summary>
         /// <param name="request">Request. <see cref="GetListFileVersionsRequest" /></param> 
-        /// <returns><see cref="FileVersionsResponse"/></returns>            
+        /// <returns><see cref="FileVersionsResponse"/></returns>
         public FileVersionsResponse GetListFileVersions(GetListFileVersionsRequest request)
         {
             // verify the required parameter 'path' is set
-            if (request.Path == null) 
+            if (request.Path == null)
             {
                 throw new ApiException(400, "Missing required parameter 'path' when calling GetListFileVersions");
             }
@@ -228,38 +228,38 @@ namespace Aspose.Storage.Cloud.Sdk.Api
                         .Replace("/?", "?");
             resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "path", request.Path);
             resourcePath = UrlHelper.AddQueryParameterToUrl(resourcePath, "storage", request.Storage);
-            
-            try 
-            {                               
+
+            try
+            {
                 var response = this.apiInvoker.InvokeApi(
-                    resourcePath, 
-                    "GET", 
-                    null, 
-                    null, 
+                    resourcePath,
+                    "GET",
+                    null,
+                    null,
                     null);
                 if (response != null)
                 {
-					return (FileVersionsResponse)SerializationHelper.Deserialize(response, typeof(FileVersionsResponse));
+                    return (FileVersionsResponse)SerializationHelper.Deserialize(response, typeof(FileVersionsResponse));
                 }
-                    
+
                 return null;
-            } 
-            catch (ApiException ex) 
+            }
+            catch (ApiException ex)
             {
-                if (ex.ErrorCode == 404) 
+                if (ex.ErrorCode == 404)
                 {
                     return null;
                 }
-                
-                throw;                
+
+                throw;
             }
         }
 
         /// <summary>
-        /// Remove a specific file  
+        /// Remove a specific file
         /// </summary>
         /// <param name="request">Request. <see cref="DeleteFileRequest" /></param> 
-        /// <returns><see cref="RemoveFileResponse"/></returns>            
+        /// <returns><see cref="RemoveFileResponse"/></returns>
         public RemoveFileResponse DeleteFile(DeleteFileRequest request)
         {
             // verify the required parameter 'path' is set
@@ -305,10 +305,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Download a specific file  
+        /// Download a specific file
         /// </summary>
         /// <param name="request">Request. <see cref="GetDownloadRequest" /></param> 
-        /// <returns><see cref="System.IO.Stream"/></returns>            
+        /// <returns><see cref="System.IO.Stream"/></returns>
         public System.IO.Stream GetDownload(GetDownloadRequest request)
         {
             // verify the required parameter 'path' is set
@@ -348,10 +348,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Move a specific file  
+        /// Move a specific file
         /// </summary>
         /// <param name="request">Request. <see cref="PostMoveFileRequest" /></param> 
-        /// <returns><see cref="MoveFileResponse"/></returns>            
+        /// <returns><see cref="MoveFileResponse"/></returns>
         public MoveFileResponse PostMoveFile(PostMoveFileRequest request)
         {
             // verify the required parameter 'src' is set
@@ -405,10 +405,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Upload a specific file  
+        /// Upload a specific file
         /// </summary>
         /// <param name="request">Request. <see cref="PutCreateRequest" /></param> 
-        /// <returns><see cref="UploadResponse"/></returns>            
+        /// <returns><see cref="UploadResponse"/></returns>
         public UploadResponse PutCreate(PutCreateRequest request)
         {
             // verify the required parameter 'path' is set
@@ -466,10 +466,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Copy a specific file  
+        /// Copy a specific file
         /// </summary>
         /// <param name="request">Request. <see cref="PutCopyRequest" /></param> 
-        /// <returns><see cref="CopyFileResponse"/></returns>            
+        /// <returns><see cref="CopyFileResponse"/></returns>
         public CopyFileResponse PutCopy(PutCopyRequest request)
         {
             // verify the required parameter 'path' is set
@@ -523,10 +523,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Remove a specific folder  
+        /// Remove a specific folder
         /// </summary>
         /// <param name="request">Request. <see cref="DeleteFolderRequest" /></param> 
-        /// <returns><see cref="RemoveFolderResponse"/></returns>            
+        /// <returns><see cref="RemoveFolderResponse"/></returns>
         public RemoveFolderResponse DeleteFolder(DeleteFolderRequest request)
         {
             // verify the required parameter 'path' is set
@@ -572,10 +572,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Get the file listing of a specific folder  
+        /// Get the file listing of a specific folder
         /// </summary>
         /// <param name="request">Request. <see cref="GetListFilesRequest" /></param> 
-        /// <returns><see cref="FilesResponse"/></returns>            
+        /// <returns><see cref="FilesResponse"/></returns>
         public FilesResponse GetListFiles(GetListFilesRequest request)
         {
             // create path and map variables
@@ -614,10 +614,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Move a specific folder  
+        /// Move a specific folder
         /// </summary>
         /// <param name="request">Request. <see cref="PostMoveFolderRequest" /></param> 
-        /// <returns><see cref="MoveFolderResponse"/></returns>            
+        /// <returns><see cref="MoveFolderResponse"/></returns>
         public MoveFolderResponse PostMoveFolder(PostMoveFolderRequest request)
         {
             // verify the required parameter 'src' is set
@@ -670,10 +670,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Create the folder  
+        /// Create the folder
         /// </summary>
         /// <param name="request">Request. <see cref="PutCreateFolderRequest" /></param> 
-        /// <returns><see cref="CreateFolderResponse"/></returns>            
+        /// <returns><see cref="CreateFolderResponse"/></returns>
         public CreateFolderResponse PutCreateFolder(PutCreateFolderRequest request)
         {
             // verify the required parameter 'path' is set
@@ -719,10 +719,10 @@ namespace Aspose.Storage.Cloud.Sdk.Api
         }
 
         /// <summary>
-        /// Copy a folder  
+        /// Copy a folder
         /// </summary>
         /// <param name="request">Request. <see cref="PutCopyFolderRequest" /></param> 
-        /// <returns><see cref="CreateFolderResponse"/></returns>            
+        /// <returns><see cref="CreateFolderResponse"/></returns>
         public CreateFolderResponse PutCopyFolder(PutCopyFolderRequest request)
         {
             // verify the required parameter 'path' is set
