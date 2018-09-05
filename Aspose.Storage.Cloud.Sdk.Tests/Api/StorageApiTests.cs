@@ -470,7 +470,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderPostMoveFolderTest()
         {
             var srcPath = Path.Combine(TempFolderPath, "TestFolder1");
-            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFolder1/");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFolder1");
 
             //Move folder
             var request = new PostMoveFolderRequest();
@@ -539,7 +539,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
         public void FolderPutCopyFolderTest()
         {
             var srcPath = Path.Combine(TempFolderPath, "TestFolder1");
-            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFolder1/");
+            var destPath = Path.Combine(TempFolderPath, "TestFolder2/TestFolder1");
 
             //PutCopy folder
             var request = new PutCopyFolderRequest();

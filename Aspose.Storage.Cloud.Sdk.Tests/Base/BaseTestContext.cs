@@ -198,9 +198,8 @@ namespace Aspose.Storage.Cloud.Sdk.Tests.Base
                 request.File = new MemoryStream(new byte[] { 1, 2, 3, 4, 5, 6, 7 });
                 responseVersion = StorageApi.PutCreate(request);
                 Assert.AreEqual(200, responseVersion.Code);
-
-                #endregion
             }
+            #endregion
         }
 
         /// <summary>
