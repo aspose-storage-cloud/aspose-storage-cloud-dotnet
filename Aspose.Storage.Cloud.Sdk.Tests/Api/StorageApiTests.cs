@@ -422,12 +422,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
             var path = Path.Combine(TempFolderPath, "TestFolder1");
 
             //Delete folder
-            var request = new DeleteFolderRequest();
-            request.Path = path;
-            request.Recursive = true;
-            request.Storage = StorageName;
-            var response = StorageApi.DeleteFolder(request);
-            Assert.AreEqual(200, response.Code);
+            DeleteFolder(StorageName, path);
 
             //The file should not exists on path
             var fileExist = FileExist(StorageName, path);
@@ -493,7 +488,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
             //Delete the output
             if (StorageName != DestStorageName)
             {
-                DeleteFile(DestStorageName, destPath);
+                DeleteFolder(DestStorageName, destPath);
             }
         }
 
@@ -558,7 +553,7 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
             //Delete the output
             if (StorageName != DestStorageName)
             {
-                DeleteFile(DestStorageName, destPath);
+                DeleteFolder(DestStorageName, destPath);
             }
         }
 
@@ -585,6 +580,16 @@ namespace Aspose.Storage.Cloud.Sdk.Tests
             request.Storage = storageName;
             request.VersionId = versionId;
             var response = StorageApi.DeleteFile(request);
+            Assert.AreEqual(200, response.Code);
+        }
+
+        private void DeleteFolder(string storageName, string path)
+        {
+            var request = new DeleteFolderRequest();
+            request.Path = path;
+            request.Storage = storageName;
+            request.Recursive = true;
+            var response = StorageApi.DeleteFolder(request);
             Assert.AreEqual(200, response.Code);
         }
 
