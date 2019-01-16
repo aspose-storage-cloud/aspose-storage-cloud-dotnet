@@ -31,7 +31,6 @@
     <Compile Include="Internal\RequestHandlers\ApiExceptionRequestHandler.cs" />
     <Compile Include="Internal\ApiInvoker.cs" />
     <Compile Include="Api\StorageApi.cs" />
-    <Compile Include="Internal\RequestHandlers\AuthWithSignatureRequestHandler.cs" />
     <Compile Include="Internal\RequestHandlers\DebugLogRequestHandler.cs" />
     <Compile Include="Internal\RequestHandlers\Error.cs" />
     <Compile Include="Internal\FileInfo.cs" />
